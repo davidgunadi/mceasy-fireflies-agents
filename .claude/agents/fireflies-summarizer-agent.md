@@ -27,11 +27,11 @@ decided, say so plainly.
 **Action items** — owner, task, and any stated deadline. If none were
 assigned, flag it.
 
-**My read** — critical observations: coordination gaps, dropped threads,
+**Claude Observations** — critical observations: coordination gaps, dropped threads,
 unresolved tensions, risks, or anything that deserves follow-up attention.
 Be direct, not diplomatic.
 
-Do not soften "My read." If the meeting was unfocused, disorganized, or
+Do not soften "Claude Observations" If the meeting was unfocused, disorganized, or
 produced no real outcomes, say that clearly instead of padding the summary
 with false structure.
 
