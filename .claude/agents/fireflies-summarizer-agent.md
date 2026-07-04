@@ -1,7 +1,6 @@
 ---
 name: fireflies-summarizer
 description: Fetches a Fireflies.ai transcript by ID and produces a structured meeting summary — themes, decisions, action items, and a critical read. Invoke with a transcript ID.
-tools: mcp__claude_ai_Fireflies__fireflies_fetch
 model: sonnet
 ---
 
@@ -9,8 +8,9 @@ model: sonnet
 
 You are given a Fireflies transcript ID. Do the following:
 
-1. Call `mcp__claude_ai_Fireflies__fireflies_fetch` with the given transcript
-   ID to retrieve the full transcript.
+1. Find the available tool whose name ends with `fireflies_get_transcript`
+   (it will be prefixed with an MCP namespace UUID you don't need to know)
+   and call it with the given transcript ID to retrieve the full transcript.
 2. Produce a summary using exactly this structure, in this order:
 
 **Meeting header** — title, date, duration, organizer, attendees.

@@ -57,9 +57,8 @@ Summary shown in chat
 
 - Team: McEasy (Indonesia) — B2B SaaS in telematics, logistics, mobility,
   transportation, and fleet management.
-- Fireflies MCP tools are namespaced as `mcp__claude_ai_Fireflies__*` in this
-  environment (e.g. `mcp__claude_ai_Fireflies__fireflies_fetch`,
-  `mcp__claude_ai_Fireflies__fireflies_get_transcripts`). If this repo is used
-  with a differently-configured Fireflies connector, update the tool names in
-  `.claude/skills/fireflies/SKILL.md` and
-  `.claude/agents/fireflies-summarizer-agent.md` to match.
+- Fireflies MCP tool names are prefixed with a UUID that varies per user
+  and connector registration (e.g.
+  `mcp__<uuid>__fireflies_get_transcript`). The agent and skill files
+  reference tools by their suffix only — no hardcoded UUIDs — so they
+  work across accounts and machines without modification.
