@@ -1,6 +1,10 @@
-# [Your Team Name] Claude Agents
+# McEasy Fireflies Agents
 
-[One paragraph describing what this repo does and who it's for.]
+A Claude Code agent/skill pack that fetches and summarizes Fireflies.ai
+meeting transcripts. Run `/fireflies` with a transcript ID, a partial meeting
+name, or nothing at all, and it hands off to a subagent that produces a
+structured summary — themes, decisions, action items, and a direct "Claude
+Observations" read on gaps or risks.
 
 ---
 
@@ -10,6 +14,7 @@
 - One of the following:
   - [Claude Desktop](https://claude.ai/download) with Claude Code, or
   - [VS Code](https://code.visualstudio.com/) with the [Claude Code extension](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-code)
+- A connected Fireflies.ai MCP server (e.g. via the claude.ai Fireflies connector)
 - This repo cloned to your machine
 
 ---
@@ -21,7 +26,7 @@
 1. Clone the repo
 
 ```bash
-git clone https://github.com/[your-org]/[your-repo].git
+git clone https://github.com/[your-org]/mceasy-fireflies-agents.git
 ```
 
 2. Open the folder in Claude Code
@@ -51,29 +56,31 @@ git clone https://github.com/[your-org]/[your-repo].git
 Type the slash command in Claude Code:
 
 ```
-/example-skill
+/fireflies                     # lists your 5 most recent transcripts, paginate with "more"
+/fireflies standup              # searches meeting titles from the last 2 weeks for a match
+/fireflies abc123transcriptid   # summarizes that transcript directly
 ```
 
-Claude will greet you, explain the pipeline, and ask for the inputs it needs.
+Claude will either resolve your input to a transcript (asking you to pick if
+needed), then produce a structured summary via the `fireflies-summarizer`
+subagent.
 
 ---
 
 ## Folder structure
 
 ```
-your-repo/
+mceasy-fireflies-agents/
 ├── CLAUDE.md                          # Project instructions — agents read this for context
 ├── README.md                          # This file
 ├── .gitignore
-├── outputs/                           # All generated files go here
-│   └── .gitkeep
 └── .claude/
-    ├── settings.json                  # Permissions (e.g. allow WebSearch)
-    ├── agents/                        # One .md file per agent
-    │   └── example-agent.md
-    └── skills/                        # One folder per slash command
-        └── example-skill/
-            └── SKILL.md
+    ├── settings.json                  # Permissions (WebSearch, WebFetch)
+    ├── agents/
+    │   └── fireflies-summarizer-agent.md  # Fetches a transcript and produces the summary
+    └── skills/
+        └── fireflies/
+            └── SKILL.md                # /fireflies — resolves input to a transcript, then delegates
 ```
 
 ---
@@ -101,6 +108,7 @@ tools: Read, Write          # What tools the agent can use
 - `Read`, `Write`, `Edit` — file access
 - `WebSearch`, `WebFetch` — internet access
 - `Bash` — shell commands (use carefully)
+- MCP tools (e.g. `mcp__claude_ai_Fireflies__fireflies_fetch`) — access to a connected MCP server
 
 ---
 
@@ -109,10 +117,12 @@ tools: Read, Write          # What tools the agent can use
 Each folder in `.claude/skills/` is a slash command. The folder name becomes the command.
 
 ```
-.claude/skills/my-pipeline/SKILL.md  →  /my-pipeline
+.claude/skills/fireflies/SKILL.md  →  /fireflies
 ```
 
-The `SKILL.md` file is a prompt that tells Claude how to orchestrate the pipeline — which agents to invoke, in what order, and where to pause for human input.
+The `SKILL.md` file is a prompt that tells Claude how to orchestrate the
+pipeline — which agents to invoke, in what order, and where to pause for
+human input.
 
 ---
 
@@ -121,12 +131,24 @@ The `SKILL.md` file is a prompt that tells Claude how to orchestrate the pipelin
 `CLAUDE.md` in the repo root is always loaded as project context. Use it to:
 - Define the pipeline order and rules
 - Give agents shared background knowledge about your domain, product, or team
-- Set hard rules (e.g. "always save to `./outputs/`", "write in English only")
+- Set hard rules
 
 Agents read `CLAUDE.md` automatically — you don't need to repeat context in every agent file.
 
 ---
 
+## A note on MCP tool names
+
+The Fireflies MCP tools this pack calls are namespaced as
+`mcp__claude_ai_Fireflies__*` in this environment (e.g.
+`mcp__claude_ai_Fireflies__fireflies_fetch`,
+`mcp__claude_ai_Fireflies__fireflies_get_transcripts`). If your Fireflies
+connector is set up differently, update the tool names in
+`.claude/skills/fireflies/SKILL.md` and
+`.claude/agents/fireflies-summarizer-agent.md` to match.
+
+---
+
 ## Questions
 
-[Add your team contact here]
+Contact the McEasy engineering team.

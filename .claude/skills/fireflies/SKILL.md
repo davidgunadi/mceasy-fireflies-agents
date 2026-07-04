@@ -34,7 +34,8 @@ yourself in this context — the subagent owns that work.
 
 ## If `$ARGUMENTS` is empty
 
-1. Call `fireflies_get_transcripts` with `limit=5`, `format="json"`.
+1. Call `mcp__claude_ai_Fireflies__fireflies_get_transcripts` with `limit=5`,
+   `format="json"`.
 2. Convert each transcript's date/time to GMT+7 and present them as a
    markdown table:
 
@@ -49,8 +50,8 @@ yourself in this context — the subagent owns that work.
 4. Stop here and wait for the user's reply. Do not proceed further in this
    turn.
 5. If the user replies with "more" (or an equivalent request for
-   additional meetings): re-call `fireflies_get_transcripts` with `limit`
-   increased by 10 over the previous call (5 → 15 → 25 → 35 → ...),
+   additional meetings): re-call `mcp__claude_ai_Fireflies__fireflies_get_transcripts`
+   with `limit` increased by 10 over the previous call (5 → 15 → 25 → 35 → ...),
    re-present the full table from the newest meeting, and repeat
    the "type more" offer in step 3. The user can keep requesting "more"
    indefinitely, each time growing the limit by another 10.
@@ -60,10 +61,3 @@ yourself in this context — the subagent owns that work.
 
 In both cases, the actual fetch + full analysis always happens in the
 `fireflies-summarizer` subagent, never inline here.
-
----
-
-**Note:** `fireflies_get_transcripts` is a placeholder tool name. Confirm the
-exact tool name your Fireflies MCP server exposes (it may be namespaced,
-e.g. `mcp__fireflies__get_transcripts`) and update both this file and the
-subagent's `tools` list to match before this will work.

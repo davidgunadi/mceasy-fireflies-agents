@@ -1,6 +1,7 @@
-# [Your Team Name] Claude Agents
+# McEasy Fireflies Agents
 
-This project uses Claude Code's multi-agent system to automate [describe what your pipeline does].
+This project uses Claude Code's agent/skill system to fetch and summarize
+Fireflies.ai meeting transcripts on demand via the `/fireflies` slash command.
 
 ---
 
@@ -10,9 +11,7 @@ Agents live in `.claude/agents/`. Each agent is a markdown file with a YAML fron
 
 | Agent | Model | Role |
 |---|---|---|
-| `example-agent` | sonnet | Describe what this agent does |
-
-Add or remove rows as you define your own agents. See `.claude/agents/example-agent.md` for the template.
+| `fireflies-summarizer` | sonnet | Fetches a transcript by ID and produces a structured summary — themes, decisions, action items, and a critical "Claude Observations" read |
 
 ---
 
@@ -22,42 +21,45 @@ Skills live in `.claude/skills/`. Each skill is a folder with a `SKILL.md` file 
 
 | Command | What it triggers |
 |---|---|
-| `/example-skill` | Describe the pipeline this kicks off |
+| `/fireflies` | With a transcript ID: summarizes it directly. With a partial meeting name: searches the last 2 weeks for matches and asks you to pick. With no argument: lists your 5 most recent transcripts (paginate with "more") and asks you to pick. |
 
-Type the command in Claude Code to start the pipeline.
+Type the command in Claude Code to start.
 
 ---
 
 ## Pipeline Order
 
-Define the order your agents run. Example:
-
 ```
-User input
+/fireflies [transcript ID | meeting name | nothing]
     ↓
-@researcher
+(if not a transcript ID) resolve to one via search or recent-list picker
     ↓
-@writer
+⏸ Pause — human picks a transcript, if not already given
     ↓
-@reviewer
+@fireflies-summarizer — fetches transcript, produces structured summary
     ↓
-⏸ Pause — human reviews
-    ↓
-@formatter
-    ↓
-Output file saved to ./outputs/
+Summary shown in chat
 ```
 
 ---
 
 ## Rules
 
-- All output files must be saved to `./outputs/` — never write to the repo root
-- [Add your own rules here]
+- The skill never fetches or analyzes a transcript inline — that work always
+  happens inside the `fireflies-summarizer` subagent.
+- Meeting-name search is capped at a 2-week lookback window.
+- "Claude Observations" in the summary must stay direct and unsoftened, even
+  for unfocused or unproductive meetings.
 
 ---
 
 ## Context
 
-- [Describe your team, product, or domain here so agents have grounding]
-- [Add any terminology, personas, or constraints that agents should know]
+- Team: McEasy (Indonesia) — B2B SaaS in telematics, logistics, mobility,
+  transportation, and fleet management.
+- Fireflies MCP tools are namespaced as `mcp__claude_ai_Fireflies__*` in this
+  environment (e.g. `mcp__claude_ai_Fireflies__fireflies_fetch`,
+  `mcp__claude_ai_Fireflies__fireflies_get_transcripts`). If this repo is used
+  with a differently-configured Fireflies connector, update the tool names in
+  `.claude/skills/fireflies/SKILL.md` and
+  `.claude/agents/fireflies-summarizer-agent.md` to match.
