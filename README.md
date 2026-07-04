@@ -58,7 +58,7 @@ Type the slash command in Claude Code:
 ```
 /fireflies                     # lists your 5 most recent transcripts, paginate with "more"
 /fireflies standup              # searches meeting titles from the last 2 weeks for a match
-/fireflies abc123transcriptid   # summarizes that transcript directly
+/fireflies 01KWH8BVRB8Q6GMCAJM70ANHFS   # summarizes that transcript directly
 ```
 
 Claude will either resolve your input to a transcript (asking you to pick if
@@ -91,20 +91,22 @@ Each file in `.claude/agents/` defines one agent. The frontmatter controls how C
 
 ```markdown
 ---
-name: agent-name            # How you invoke it: @agent-name
-description: ...            # Claude reads this to decide when to use it
-model: sonnet               # sonnet (fast/cheap) or opus (deep research)
-tools: Read, Write          # What tools the agent can use
+name: agent-name # How you invoke it: @agent-name
+description: ... # Claude reads this to decide when to use it
+model: sonnet # sonnet (fast/cheap) or opus (deep research)
+tools: Read, Write # What tools the agent can use
 ---
 
 [System prompt — the agent's instructions]
 ```
 
 **Model guidance:**
+
 - Use `opus` for research agents that need deep reasoning and web search
 - Use `sonnet` for writing, reviewing, and formatting agents
 
 **Tools you can grant:**
+
 - `Read`, `Write`, `Edit` — file access
 - `WebSearch`, `WebFetch` — internet access
 - `Bash` — shell commands (use carefully)
@@ -129,6 +131,7 @@ human input.
 ## How CLAUDE.md works
 
 `CLAUDE.md` in the repo root is always loaded as project context. Use it to:
+
 - Define the pipeline order and rules
 - Give agents shared background knowledge about your domain, product, or team
 - Set hard rules
