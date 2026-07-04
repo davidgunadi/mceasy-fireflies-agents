@@ -56,7 +56,7 @@ git clone https://github.com/[your-org]/mceasy-fireflies-agents.git
 Type the slash command in Claude Code:
 
 ```
-/fireflies                              # lists your 5 most recent transcripts, paginate with "more"
+/fireflies                              # lists your 5 most recent transcripts, can get "more"
 /fireflies grooming                     # searches meeting containing "grooming" from the last 2 weeks for a match
 /fireflies 01KWH8BVRB8Q6GMCAJM70ANHFS   # summarizes that transcript directly
 ```
