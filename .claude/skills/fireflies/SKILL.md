@@ -61,3 +61,15 @@ yourself in this context — the subagent owns that work.
 
 In both cases, the actual fetch + full analysis always happens in the
 `fireflies-summarizer` subagent, never inline here.
+
+## Delegation rules (critical)
+
+When spawning the `fireflies-summarizer` subagent:
+
+- Pass **only the transcript ID** in the prompt — do not write a custom
+  prompt that describes the output format or sections. The agent's own
+  definition in `.claude/agents/fireflies-summarizer-agent.md` owns the
+  output structure, including the **Claude Observations** section.
+- A custom inline prompt will silently override the agent definition and
+  drop sections (e.g. Claude Observations). Never do this.
+- Minimal prompt example: `"Summarize transcript ID: <id>"`
