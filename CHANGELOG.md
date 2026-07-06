@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.3] - 2026-07-06
+
+### Fixed
+
+- `scripts/compact-transcript.js`: stop hard-failing when
+  `fireflies_get_transcript` returns a non-JSON body (plain text or "toon"
+  format, depending on the tool's `format` param/server default). Previously
+  a failed `JSON.parse` printed an error and exited 1, leaving the `mom` /
+  `default-summary` agents to fall back to reading only the first ~50 lines
+  of the raw saved file — silently truncating the transcript and producing
+  summaries built from a fraction of the meeting. The script now writes the
+  non-JSON body through unchanged to the temp file so the agent still gets
+  the full transcript.
+
 ## [1.2.2] - 2026-07-06
 
 ### Fixed

@@ -29,12 +29,21 @@ if (!savedFile) {
   process.exit(2);
 }
 
+const raw = fs.readFileSync(savedFile, "utf8");
+
 let data;
 try {
-  data = JSON.parse(fs.readFileSync(savedFile, "utf8"));
+  data = JSON.parse(raw);
 } catch (err) {
-  console.error(`failed to read/parse ${savedFile}: ${err.message}`);
-  process.exit(1);
+  // The tool can return plain text or "toon" format instead of JSON
+  // (depends on the `format` param / server default) — pass it through
+  // unchanged rather than failing, since it's already readable as-is.
+  const outFile = process.argv[3] ||
+    path.join(os.tmpdir(), `fireflies-${Date.now()}-transcript.txt`);
+  fs.writeFileSync(outFile, raw, "utf8");
+  console.log(outFile);
+  console.log(`not JSON (${err.message}) — passed through unchanged, ${raw.length} chars`);
+  process.exit(0);
 }
 
 // Unwrap common envelopes to reach the transcript object.
