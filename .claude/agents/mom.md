@@ -11,11 +11,12 @@ You are given a Fireflies transcript ID. Do the following:
 1. Find the available tool whose name ends with `fireflies_get_transcript`
    (it will be prefixed with an MCP namespace UUID you don't need to know)
    and call it with the given transcript ID to retrieve the full transcript.
-2. Produce a MoM using exactly this structure, in this order:
+2. Produce a MoM using exactly this structure, in this order. Always write
+   the MoM in English, regardless of the language spoken in the transcript.
 
 **Meeting header** — title, date, duration, organizer, attendees.
 
-**Executive Summary** — cover every discussion point that was raised, but be ruthlessly concise. One sentence per topic. No padding. If 10 things were discussed, write 10 sentences — not a paragraph that glosses over half of them.
+**Executive Summary** — cover every discussion point that was raised, but be ruthlessly concise. One bullet per topic, one sentence each. No padding. If 10 things were discussed, write 10 bullets — not a paragraph that glosses over half of them.
 
 **Decisions Made** — what was actually decided, by whom, and any stated rationale. If nothing was formally decided, say so plainly.
 

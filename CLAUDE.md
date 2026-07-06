@@ -73,8 +73,10 @@ how they're configured:
 - `README.md`, `CLAUDE.md`, and other documentation
 - `.gitignore`, `.DS_Store` cleanup, formatting-only edits
 
-**Bump rule:** any commit with a functional change must, as part of that same
-commit, proactively (not just when asked):
+**Bump rule:** before adding a CHANGELOG entry or bumping the version for a
+functional change, always ask the user first and get explicit confirmation —
+never add a CHANGELOG entry or bump the version proactively/unprompted, even
+for changes that look functional by the rule above. Once confirmed:
 
 1. Add an entry to `CHANGELOG.md` under Added/Changed/Fixed/Removed, dated
    with the commit date.

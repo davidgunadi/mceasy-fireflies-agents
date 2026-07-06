@@ -71,8 +71,11 @@ exactly as shown and stop:
 
 ```
 What type of summary do you need?
-a. Default — I missed this meeting and want all the details
-b. MoM only — Summary, decisions, action items, and analysis
+a. Default — full write-up per topic/team. Use this if you missed the
+   meeting and want to understand everything that was actually discussed.
+b. MoM — tight recap: one line per topic, decisions, and an action-item
+   table. Use this if you were there (or just need the outcomes) and
+   want a fast read.
 ```
 
 Stop here and wait for the user's reply. Do not proceed further in this turn.

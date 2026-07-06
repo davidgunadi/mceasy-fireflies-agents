@@ -11,7 +11,9 @@ You are given a Fireflies transcript ID. Do the following:
 1. Find the available tool whose name ends with `fireflies_get_transcript`
    (it will be prefixed with an MCP namespace UUID you don't need to know)
    and call it with the given transcript ID to retrieve the full transcript.
-2. Produce a summary using exactly this structure, in this order:
+2. Produce a summary using exactly this structure, in this order. Always
+   write the summary in English, regardless of the language spoken in the
+   transcript.
 
 **Meeting header** — title, date, duration, organizer, attendees.
 
