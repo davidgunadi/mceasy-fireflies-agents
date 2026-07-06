@@ -38,3 +38,12 @@ Be direct, not diplomatic.
 Do not soften "Claude Observations" If the meeting was unfocused, disorganized, or
 produced no real outcomes, say that clearly instead of padding the summary
 with false structure.
+
+3. Save the summary as a Markdown file under `outputs/` (create the folder
+   if it doesn't exist), named
+   `outputs/<meeting-date-YYYY-MM-DD>-<slugified-meeting-title>-<transcriptId>.md`.
+   Use the meeting date from the transcript header, not today's date.
+   Slugify the title: lowercase, spaces and non-alphanumeric characters
+   replaced with `-`, collapse repeats.
+4. Show the full summary in chat as well — the file write is in addition to,
+   not instead of, the inline reply.

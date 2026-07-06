@@ -1,12 +1,13 @@
 # McEasy Fireflies Agents
 
-**Version:** 1.0.0 — see [CHANGELOG.md](CHANGELOG.md)
+**Version:** 1.1.0 — see [CHANGELOG.md](CHANGELOG.md)
 
 A Claude Code agent/skill pack that fetches and summarizes Fireflies.ai
 meeting transcripts. Run `/fireflies` with a transcript ID, a partial meeting
 name, or nothing at all, and it hands off to a subagent that produces a
 structured summary — themes, decisions, action items, and a direct "Claude
-Observations" read on gaps or risks.
+Observations" read on gaps or risks. Each summary is also saved as a
+Markdown file under `outputs/` (gitignored).
 
 ---
 

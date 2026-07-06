@@ -38,7 +38,7 @@ Type the command in Claude Code to start.
     ↓
 @fireflies-summarizer — fetches transcript, produces structured summary
     ↓
-Summary shown in chat
+Summary shown in chat AND saved to outputs/<date>-<title>-<id>.md
 ```
 
 ---
@@ -50,6 +50,8 @@ Summary shown in chat
 - Meeting-name search is capped at a 2-week lookback window.
 - "Claude Observations" in the summary must stay direct and unsoftened, even
   for unfocused or unproductive meetings.
+- Every summary is also saved as a Markdown file in `outputs/` (gitignored),
+  in addition to being shown in chat — never instead of it.
 
 ---
 
