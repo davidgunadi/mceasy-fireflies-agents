@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.2] - 2026-07-06
+
+### Fixed
+
+- `mom` and `default-summary` agents: stop reflexively re-invoking the
+  `/fireflies` skill. Both agents inherited the `Skill` tool, so when handed a
+  transcript ID they would call `Skill(fireflies)`, absorb the skill's
+  resolve/menu flow, and derail — asking the summary-type menu (the parent
+  skill's job) instead of producing output, then misidentifying their own role.
+  Added `disallowedTools: Skill` to both agent frontmatters so the tool is
+  structurally unavailable, plus a "leaf worker" guard in each agent body
+  instructing it never to invoke a skill or present a menu. `disallowedTools`
+  is used (rather than a `tools:` allowlist) so the UUID-prefixed Fireflies MCP
+  tool keeps working without hardcoding the per-machine UUID.
+
 ## [1.2.1] - 2026-07-06
 
 ### Fixed
