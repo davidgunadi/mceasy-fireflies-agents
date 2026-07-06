@@ -53,6 +53,39 @@ Summary shown in chat
 
 ---
 
+## Versioning
+
+This repo follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and
+[SemVer](https://semver.org/). Current version lives in `CHANGELOG.md` and is
+mirrored in the `**Version:**` line near the top of `README.md`.
+
+**Functional changes** — anything that changes what the agents/skills do or
+how they're configured:
+
+- `.claude/agents/*.md` (agent behavior, prompts, tool grants, model choice)
+- `.claude/skills/**/SKILL.md` (slash command behavior, pipeline logic)
+- `.claude/settings.json` (permissions)
+
+**Non-functional changes** — no CHANGELOG entry or version bump required:
+
+- `README.md`, `CLAUDE.md`, and other documentation
+- `.gitignore`, `.DS_Store` cleanup, formatting-only edits
+
+**Bump rule:** any commit with a functional change must, as part of that same
+commit, proactively (not just when asked):
+
+1. Add an entry to `CHANGELOG.md` under Added/Changed/Fixed/Removed, dated
+   with the commit date.
+2. Bump the version in `CHANGELOG.md` and the `README.md` header to match —
+   MAJOR for breaking changes to the pipeline/workflow (e.g. changing what a
+   command expects or how it hands off between skill and agent), MINOR for
+   new capabilities (new agent, new skill, new command option), PATCH for
+   fixes/tweaks to existing behavior.
+
+If it's unclear whether a change counts as functional, ask rather than guess.
+
+---
+
 ## Context
 
 - Team: McEasy (Indonesia) — B2B SaaS in telematics, logistics, mobility,
