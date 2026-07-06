@@ -11,7 +11,7 @@ Agents live in `.claude/agents/`. Each agent is a markdown file with a YAML fron
 
 | Agent | Model | Role |
 |---|---|---|
-| `fireflies-summarizer` | sonnet | Fetches a transcript by ID and produces a structured summary — themes, decisions, action items, and a critical "Claude Observations" read |
+| `default-summary` | sonnet | Fetches a transcript by ID and produces a structured summary — themes, decisions, action items, and a critical "Claude Observations" read |
 
 ---
 
@@ -36,7 +36,7 @@ Type the command in Claude Code to start.
     ↓
 ⏸ Pause — human picks a transcript, if not already given
     ↓
-@fireflies-summarizer — fetches transcript, produces structured summary
+@default-summary — fetches transcript, produces structured summary
     ↓
 Summary shown in chat AND saved to outputs/<date>-<title>-<id>.md
 ```
@@ -46,7 +46,7 @@ Summary shown in chat AND saved to outputs/<date>-<title>-<id>.md
 ## Rules
 
 - The skill never fetches or analyzes a transcript inline — that work always
-  happens inside the `fireflies-summarizer` subagent.
+  happens inside the `default-summary` subagent.
 - Meeting-name search is capped at a 2-week lookback window.
 - "Claude Observations" in the summary must stay direct and unsoftened, even
   for unfocused or unproductive meetings.

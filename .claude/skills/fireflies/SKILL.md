@@ -5,13 +5,17 @@ description: Fetch and summarize a Fireflies.ai meeting transcript by ID, or lis
 
 # Fireflies meeting summary
 
-## If `$ARGUMENTS` contains a transcript ID
+## Step 1 — Resolve a transcript ID
 
-Delegate immediately to the `fireflies-summarizer` subagent, passing the
-transcript ID from `$ARGUMENTS`. Do not fetch or analyze the transcript
-yourself in this context — the subagent owns that work.
+Use the appropriate path below to arrive at a confirmed transcript ID.
 
-## If `$ARGUMENTS` matches a partial meeting name (not a transcript ID)
+A Fireflies transcript ID is a 26-character alphanumeric string (e.g. `01KWH8BVRB8Q6GMCAJM70ANHFS`). If `$ARGUMENTS` matches this pattern, treat it as a direct transcript ID; otherwise treat it as a partial meeting name.
+
+### If `$ARGUMENTS` contains a transcript ID
+
+The transcript ID is already known. Proceed directly to Step 2.
+
+### If `$ARGUMENTS` matches a partial meeting name (not a transcript ID)
 
 1. Search transcripts from today back to at most 2 weeks ago — do not search
    further back than that window.
@@ -28,11 +32,10 @@ yourself in this context — the subagent owns that work.
 4. If no matches are found in the 2-week window, say so and stop.
 5. Stop here and wait for the user's reply. Do not proceed further in this
    turn.
-6. Once the user replies with a pick (by index or by name), take that
-   transcript's ID and delegate to the `fireflies-summarizer` subagent with
-   that ID.
+6. Once the user replies with a pick (by index or by name), use that
+   transcript's ID and proceed to Step 2.
 
-## If `$ARGUMENTS` is empty
+### If `$ARGUMENTS` is empty
 
 1. Find the available tool whose name ends with `fireflies_get_transcripts`
    (it will be prefixed with an MCP namespace UUID) and call it with `limit=5`,
@@ -57,20 +60,43 @@ yourself in this context — the subagent owns that work.
    the "type more" offer in step 3. The user can keep requesting "more"
    indefinitely, each time growing the limit by another 10.
 6. Once the user replies with a pick (by index or by name) instead of
-   "more", take that transcript's ID and delegate to the
-   `fireflies-summarizer` subagent with that ID.
+   "more", use that transcript's ID and proceed to Step 2.
 
-In both cases, the actual fetch + full analysis always happens in the
-`fireflies-summarizer` subagent, never inline here.
+---
+
+## Step 2 — Ask what type of summary is needed
+
+Once a transcript ID is confirmed (from any path above), present this menu
+exactly as shown and stop:
+
+```
+What type of summary do you need?
+a. Default — I missed this meeting and want all the details
+b. MoM only — Summary, decisions, action items, and analysis
+```
+
+Stop here and wait for the user's reply. Do not proceed further in this turn.
+
+---
+
+## Step 3 — Delegate to the appropriate subagent
+
+Based on the user's answer:
+
+- **a** (or "default", "all details", or equivalent) → delegate to the
+  `default-summary` subagent
+- **b** (or "MoM", "mom", "minutes", or equivalent) → delegate to the
+  `mom` subagent
 
 ## Delegation rules (critical)
 
-When spawning the `fireflies-summarizer` subagent:
+When spawning either subagent:
 
 - Pass **only the transcript ID** in the prompt — do not write a custom
-  prompt that describes the output format or sections. The agent's own
-  definition in `.claude/agents/fireflies-summarizer-agent.md` owns the
-  output structure, including the **Claude Observations** section.
+  prompt that describes the output format or sections. Each agent's own
+  definition owns the output structure.
 - A custom inline prompt will silently override the agent definition and
   drop sections (e.g. Claude Observations). Never do this.
 - Minimal prompt example: `"Summarize transcript ID: <id>"`
+- The actual fetch + full analysis always happens in the subagent, never
+  inline here.

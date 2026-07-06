@@ -1,5 +1,5 @@
 ---
-name: fireflies-summarizer
+name: default-summary
 description: Fetches a Fireflies.ai transcript by ID and produces a structured meeting summary — themes, decisions, action items, and a critical read. Invoke with a transcript ID.
 model: sonnet
 ---

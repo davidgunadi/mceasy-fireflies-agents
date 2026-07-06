@@ -1,6 +1,6 @@
 # McEasy Fireflies Agents
 
-**Version:** 1.1.0 — see [CHANGELOG.md](CHANGELOG.md)
+**Version:** 1.2.0 — see [CHANGELOG.md](CHANGELOG.md)
 
 A Claude Code agent/skill pack that fetches and summarizes Fireflies.ai
 meeting transcripts. Run `/fireflies` with a transcript ID, a partial meeting
@@ -65,7 +65,7 @@ Type the slash command in Claude Code:
 ```
 
 Claude will either resolve your input to a transcript (asking you to pick if
-needed), then produce a structured summary via the `fireflies-summarizer`
+needed), then produce a structured summary via the `default-summary`
 subagent.
 
 ---
@@ -80,7 +80,7 @@ mceasy-fireflies-agents/
 └── .claude/
     ├── settings.json                  # Permissions (WebSearch, WebFetch)
     ├── agents/
-    │   └── fireflies-summarizer-agent.md  # Fetches a transcript and produces the summary
+    │   └── default-summary.md  # Fetches a transcript and produces the summary
     └── skills/
         └── fireflies/
             └── SKILL.md                # /fireflies — resolves input to a transcript, then delegates
@@ -151,7 +151,7 @@ The Fireflies MCP tools this pack calls are namespaced as
 `mcp__claude_ai_Fireflies__fireflies_get_transcripts`). If your Fireflies
 connector is set up differently, update the tool names in
 `.claude/skills/fireflies/SKILL.md` and
-`.claude/agents/fireflies-summarizer-agent.md` to match.
+`.claude/agents/default-summary.md` to match.
 
 ---
 

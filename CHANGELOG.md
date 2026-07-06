@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-07-06
+
+### Added
+
+- `mom` agent: produces a concise Minutes of Meeting — tight executive summary
+  (one sentence per topic), decisions made, action items as a table with
+  owner/task/deadline, and Claude Observations.
+- `/fireflies` skill now asks what type of summary is needed (Default or MoM)
+  after a transcript is selected, then routes to the appropriate subagent.
+
+### Changed
+
+- Renamed `fireflies-summarizer-agent.md` → `default-summary.md` and updated
+  its `name:` to `default-summary`; all references updated across SKILL.md,
+  CLAUDE.md, and README.md.
+- `/fireflies` skill restructured into three explicit steps: resolve transcript,
+  select summary type, delegate — with transcript ID format hint added to
+  prevent misrouting of short/alphanumeric arguments.
+
 ## [1.1.0] - 2026-07-06
 
 ### Added
