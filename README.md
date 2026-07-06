@@ -1,6 +1,6 @@
 # McEasy Fireflies Agents
 
-**Version:** 1.2.0 — see [CHANGELOG.md](CHANGELOG.md)
+**Version:** 1.2.1 — see [CHANGELOG.md](CHANGELOG.md)
 
 A Claude Code agent/skill pack that fetches and summarizes Fireflies.ai
 meeting transcripts. Run `/fireflies` with a transcript ID, a partial meeting
@@ -19,6 +19,15 @@ Markdown file under `outputs/` (gitignored).
   - [VS Code](https://code.visualstudio.com/) with the [Claude Code extension](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-code)
 - A connected Fireflies.ai MCP server (e.g. via the claude.ai Fireflies connector)
 - This repo cloned to your machine
+- **A `bash` shell** — Claude Code runs its shell commands through bash:
+  - macOS / Linux: already included, nothing to install.
+  - Windows: install **[Git for Windows](https://git-scm.com/download/win)**
+    (provides Git Bash), **or** use **[WSL](https://learn.microsoft.com/windows/wsl/install)**
+    and run Claude Code inside a Linux distro.
+- **[Node.js](https://nodejs.org/) 18+** — required by Claude Code, and used by
+  `scripts/compact-transcript.js` to compact large transcripts. On Windows,
+  install the Windows build (native + Git Bash) or install Node *inside* WSL
+  if you use that path. Verify with `node --version`.
 
 ---
 

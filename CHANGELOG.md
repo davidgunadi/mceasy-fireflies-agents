@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2026-07-06
+
+### Fixed
+
+- `mom` and `default-summary` agents: handle oversized transcripts without
+  exhausting execution budget. When `fireflies_get_transcript` spills its
+  result to a file (typical ~60–70K-char meetings), the agent now runs a
+  single `scripts/compact-transcript.js` pass — stripping per-word timing,
+  keeping metadata plus `Speaker: text` lines — and reads the compact file
+  once, instead of reading the raw file in 10+ chunks and running out of
+  budget mid-summary. Agents are also instructed never to return a partial or
+  placeholder reply.
+- `scripts/compact-transcript.js`: new Node helper that performs the transcript
+  compaction. Implemented in Node (not Python) so it runs wherever Claude Code
+  runs — including Windows/Git Bash, where `python3` is typically absent.
+
 ## [1.2.0] - 2026-07-06
 
 ### Added

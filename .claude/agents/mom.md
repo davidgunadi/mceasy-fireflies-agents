@@ -11,6 +11,43 @@ You are given a Fireflies transcript ID. Do the following:
 1. Find the available tool whose name ends with `fireflies_get_transcript`
    (it will be prefixed with an MCP namespace UUID you don't need to know)
    and call it with the given transcript ID to retrieve the full transcript.
+
+   **Handling an oversized transcript (important — do not skip).** A typical
+   meeting runs ~60–70K characters, which exceeds the inline tool-result
+   limit. When that happens the harness does not return the transcript to you
+   directly — it saves the result to a file and hands you the path. In that
+   case, **do not read that file in small chunks.** Reading a long transcript
+   in ~100-line slices takes 10+ sequential reads and will exhaust your
+   execution budget before you can write a single line of the MoM. Instead:
+
+   a. Run this single `Bash` command from the repo root to parse the saved
+      JSON and write a compact transcript (metadata + `Speaker: text` lines,
+      with the bulky per-word timing stripped) to a temp file — replace
+      `<SAVED_FILE>` with the real path the harness gave you:
+
+      ```bash
+      node scripts/compact-transcript.js "<SAVED_FILE>"
+      ```
+
+      This uses Node, which is guaranteed present wherever Claude Code runs
+      (no Python dependency), so it behaves the same on macOS, Linux, and
+      Windows/Git Bash.
+
+   b. Read the compact temp file whose path the command prints on its first
+      line. It is small enough to read in one (or at most two) `Read` calls.
+      The `=== METADATA ===` block gives you the header fields (title, date,
+      duration, organizer, attendees); the `=== TRANSCRIPT ===` block is the
+      dialogue.
+   c. If the command prints `0 transcript lines` or a warning about the
+      top-level keys, the JSON shape differs from what the script expects.
+      Read the first ~50 lines of the saved file once to learn the real
+      structure, then proceed from what you find — but still avoid a long
+      chunked read of the whole file.
+
+   Only once you hold the full transcript text (whether inline or via the
+   compact file) do you move on to produce output. Never return an
+   intermediate status message or a partial MoM — your final reply must be the
+   complete MoM described below.
 2. Produce a MoM using exactly this structure, in this order. Always write
    the MoM in English, regardless of the language spoken in the transcript.
 
