@@ -43,6 +43,15 @@ Summary shown in chat AND saved to outputs/<date>-<title>-<id>.md
 
 ---
 
+## Scripts
+
+Helper scripts live in `scripts/`. They exist to be invoked by agents via the
+`Bash` tool as part of a pipeline step (e.g. compacting an oversized
+transcript before summarizing) — they are not meant to be run manually by a
+human. If an agent needs one, its prompt should say so explicitly.
+
+---
+
 ## Rules
 
 - The skill never fetches or analyzes a transcript inline — that work always

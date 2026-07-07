@@ -81,12 +81,17 @@ subagent.
 ```
 mceasy-fireflies-agents/
 ├── CLAUDE.md                          # Project instructions — agents read this for context
+├── CHANGELOG.md                       # Version history (Keep a Changelog / SemVer)
 ├── README.md                          # This file
 ├── .gitignore
+├── scripts/                           # Helper scripts invoked by agents via Bash, not run manually
+│   └── compact-transcript.js          # Shrinks oversized transcript JSON so agents can read it in one pass
+├── outputs/                           # Saved summaries, one Markdown file per run (gitignored)
 └── .claude/
     ├── settings.json                  # Permissions (WebSearch, WebFetch)
     ├── agents/
-    │   └── default-summary.md  # Fetches a transcript and produces the summary
+    │   ├── default-summary.md         # Fetches a transcript and produces the structured summary
+    │   └── mom.md                     # Fetches a transcript and produces a Minutes of Meeting summary
     └── skills/
         └── fireflies/
             └── SKILL.md                # /fireflies — resolves input to a transcript, then delegates
