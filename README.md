@@ -13,21 +13,18 @@ Markdown file under `outputs/` (gitignored).
 
 ## Prerequisites
 
-- Claude Code enabled (comes with Claude Pro or Max)
-- One of the following:
-  - [Claude Desktop](https://claude.ai/download) with Claude Code, or
-  - [VS Code](https://code.visualstudio.com/) with the [Claude Code extension](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-code)
-- A connected Fireflies.ai MCP server (e.g. via the claude.ai Fireflies connector)
-- This repo cloned to your machine
-- **A `bash` shell** — Claude Code runs its shell commands through bash:
-  - macOS / Linux: already included, nothing to install.
-  - Windows: install **[Git for Windows](https://git-scm.com/download/win)**
-    (provides Git Bash), **or** use **[WSL](https://learn.microsoft.com/windows/wsl/install)**
-    and run Claude Code inside a Linux distro.
-- **[Node.js](https://nodejs.org/) 18+** — required by Claude Code, and used by
-  `scripts/compact-transcript.js` to compact large transcripts. On Windows,
-  install the Windows build (native + Git Bash) or install Node *inside* WSL
-  if you use that path. Verify with `node --version`.
+Must Have:
+
+- [Claude Desktop](https://claude.com/download)
+- [Git](https://git-scm.com/install/)
+- [Python](https://www.python.org/downloads/)
+- [Node](https://nodejs.org/en/download)
+- Claude Pro or Max account
+
+- Optional:
+
+- [GitHub Desktop](https://desktop.github.com/download/)
+- [VSCode](https://code.visualstudio.com/download)
 
 ---
 
@@ -41,9 +38,9 @@ Markdown file under `outputs/` (gitignored).
 git clone https://github.com/[your-org]/mceasy-fireflies-agents.git
 ```
 
-2. Open the folder in Claude Code
+1. Open the folder in Claude Code
 
-3. That's it — agents and skills load automatically from `.claude/`
+2. That's it — agents and skills load automatically from `.claude/`
 
 ### Option B: Using GitHub Desktop
 
