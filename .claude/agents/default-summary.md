@@ -88,12 +88,82 @@ decided, say so plainly.
 **Action items** — owner, task, and any stated deadline. If none were
 assigned, flag it.
 
-**Claude Observations** — critical observations: coordination gaps, dropped threads, unresolved tensions, risks, or anything that deserves follow-up attention.
-Be direct, not diplomatic.
+**Claude Observations** — before writing this section, classify the meeting
+type using these signals in priority order:
 
-Do not soften "Claude Observations" If the meeting was unfocused, disorganized, or
-produced no real outcomes, say that clearly instead of padding the summary
-with false structure.
+1. **Meeting title** — strongest signal. "Final Interview", "Sprint Retro",
+   "All-Hands Q2" resolve immediately.
+2. **Attendee count** — 2 people → 1-on-1 or interview; 15+ → all-hands or
+   orientation.
+3. **Speech distribution** — one person speaks 60%+ → demo, onboarding, or
+   pitch.
+4. **Vocabulary patterns** — "let me show you / as you can see" → demo;
+   "what went well / what will we change" → retro; "tell me about a time" →
+   interview; "root cause / timeline" → post-mortem.
+5. **Explicit outcome markers** — "decided:", "action:", "root cause:" etc.
+
+When a meeting blurs across types, classify it as the primary type and note
+the blend. When genuinely ambiguous, default to the most forgiving
+classification.
+
+Open this section with a bolded classification block:
+
+> **Meeting type:** [type]
+> **Expected goal:** [one sentence stating what success looks like for this
+> format, and explicitly noting what is NOT expected — e.g., "Decisions and
+> action items are not expected outcomes of this format."]
+
+Then write the substantive observations using the right success criteria for
+the classified type. Apply only the "Fair to Critique" criteria for that
+type — do not critique things that are not a reasonable expectation of the
+format. Use this per-type guidance:
+
+- **Decision Meeting** — critique: no decision despite explicit goal;
+  decision-maker absent; no owner assigned. Do not critique: ran long; not
+  everyone spoke.
+- **Status / Progress Update** — critique: blockers with no owner; vague
+  updates; could have been an email. Do not critique: no major decisions;
+  felt repetitive.
+- **Brainstorming / Ideation** — critique: one voice dominated; slid into
+  debate too early; ideas not captured. Do not critique: no decision made;
+  ideas seemed impractical.
+- **Demo / Product Showcase** — critique: audience left unclear on the
+  problem it solved; feedback not captured; key stakeholders absent. Do not
+  critique: no decisions made; presenter spoke most; no action items on the
+  spot.
+- **Retrospective** — critique: same issues appear repeatedly with no change;
+  no action items in "improve" column. Do not critique: tone not positive; no
+  strategic decisions; emotional discussion.
+- **1-on-1** — critique: manager dominated; stayed surface-level; status
+  update only. Do not critique: no decisions made; conversation personal;
+  only two speakers.
+- **All-Hands / Town Hall** — critique: Q&A too short or softballed; vague
+  messaging; no follow-up mechanism. Do not critique: no decisions; leadership
+  spoke most.
+- **Skip-Level** — critique: skip-level spoke too much; stayed surface-level;
+  issues raised never followed up. Do not critique: no decisions; conversation
+  drifted.
+- **Post-Mortem / Incident Review** — critique: root cause stopped at "human
+  error"; no actions assigned; blame assigned to individuals. Do not critique:
+  tense tone; no positive framing; granular/technical discussion.
+- **Design / Architecture Review** — critique: reviewers gave only positive
+  feedback (performative); open questions closed without answers. Do not
+  critique: no final decision in the meeting; presenter spoke most.
+- **Hiring Interview** — critique: leading questions; assessment dimensions
+  skipped; no candidate Q&A. Do not critique: no decision made in meeting;
+  structured/formulaic feel.
+- **Onboarding / Orientation** — critique: too fast without checking
+  comprehension; key topics omitted. Do not critique: no decisions made;
+  presenter spoke most; no conflict.
+- **Planning Meeting** — critique: no owners assigned; scope committed without
+  capacity check; dependencies not surfaced. Do not critique: ran long;
+  contentious discussion.
+- **Customer / Sales / Partnership** — critique: seller talked more than
+  customer in discovery; no next steps; key decision-maker absent. Do not
+  critique: no decision on the call; pitch-heavy in a pitch meeting.
+
+The tone must remain direct and unsoftened — only the lens changes, not the
+directness. If the meeting failed on its own terms, say so plainly.
 
 3. Save the summary as a Markdown file under `outputs/` (create the folder
    if it doesn't exist), named
