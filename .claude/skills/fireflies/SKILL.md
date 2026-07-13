@@ -21,7 +21,13 @@ The transcript ID is already known. Proceed directly to Step 2.
    further back than that window.
 2. Match `$ARGUMENTS` against meeting titles within that window and take up
    to the 3 most recent matches, newest first.
-3. Present the matches as a markdown table:
+3. For each result, derive the day-of-week label by running a Bash command —
+   never compute it by mental arithmetic. Example (macOS):
+   ```bash
+   TZ="Asia/Jakarta" date -j -f "%Y-%m-%dT%H:%M:%S" "2026-07-13T09:15:00" +"%a, %d %b %Y"
+   ```
+   Use the output to populate the Date column.
+4. Present the matches as a markdown table:
 
    ```
    | # | Title | Date (GMT+7) | Time (GMT+7) | Duration | Transcript ID |
@@ -29,10 +35,10 @@ The transcript ID is already known. Proceed directly to Step 2.
    | 1 | ...   | ...          | ...          | ...      | ...            |
    ```
 
-4. If no matches are found in the 2-week window, say so and stop.
-5. Stop here and wait for the user's reply. Do not proceed further in this
+5. If no matches are found in the 2-week window, say so and stop.
+6. Stop here and wait for the user's reply. Do not proceed further in this
    turn.
-6. Once the user replies with a pick (by index or by name), use that
+7. Once the user replies with a pick (by index or by name), use that
    transcript's ID and proceed to Step 2.
 
 ### If `$ARGUMENTS` is empty
@@ -40,7 +46,13 @@ The transcript ID is already known. Proceed directly to Step 2.
 1. Find the available tool whose name ends with `fireflies_get_transcripts`
    (it will be prefixed with an MCP namespace UUID) and call it with `limit=5`,
    `format="json"`.
-2. Convert each transcript's date/time to GMT+7 and present them as a
+2. For each result, derive the day-of-week label by running a Bash command —
+   never compute it by mental arithmetic. Example (macOS):
+   ```bash
+   TZ="Asia/Jakarta" date -j -f "%Y-%m-%dT%H:%M:%S" "2026-07-13T09:15:00" +"%a, %d %b %Y"
+   ```
+   Use the output to populate the Date column.
+3. Convert each transcript's date/time to GMT+7 and present them as a
    markdown table:
 
    ```
