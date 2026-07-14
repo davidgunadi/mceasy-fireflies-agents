@@ -33,7 +33,7 @@ Read the full file content. Extract:
 
 - **Meeting title** — compose as `YYYY-MM-DD <Meeting Name>`, where:
   - `YYYY-MM-DD` is the meeting date (from the `**Date:**` field in the file, or from the filename prefix as a fallback).
-  - `<Meeting Name>` is the meeting name from the first `#` heading in the file (or un-slugified from the filename middle segment `<slug>` as a fallback).
+  - `<Meeting Name>` is the meeting name from the first `#` heading in the file, with any leading `Minutes of Meeting — ` or `Minutes of Meeting - ` prefix stripped (or un-slugified from the filename middle segment `<slug>` as a fallback).
   - Example: `2026-07-14 IoT x Product x Engineering Weekly`
 - **Content body** — the full Markdown text. Do **not** include the title
   in the content body; it goes into `properties.title` only (Notion renders
