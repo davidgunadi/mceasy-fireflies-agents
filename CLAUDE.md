@@ -22,6 +22,7 @@ Skills live in `.claude/skills/`. Each skill is a folder with a `SKILL.md` file 
 | Command | What it triggers |
 |---|---|
 | `/fireflies` | With a transcript ID: summarizes it directly. With a partial meeting name: searches the last 2 weeks for matches and asks you to pick. With no argument: lists your 5 most recent transcripts (paginate with "more") and asks you to pick. |
+| `/export-to-notion` | Exports the most recently generated MoM to Notion as a sub-page under the McEasy MoM page. Pass a path to a specific `outputs/*.md` file to target a different one. |
 
 Type the command in Claude Code to start.
 
@@ -108,3 +109,7 @@ If it's unclear whether a change counts as functional, ask rather than guess.
   `mcp__<uuid>__fireflies_get_transcript`). The agent and skill files
   reference tools by their suffix only — no hardcoded UUIDs — so they
   work across accounts and machines without modification.
+- Notion MCP tools follow the same UUID-prefix pattern (e.g.
+  `mcp__<uuid>__notion-create-pages`). Referenced by suffix only.
+- The `/export-to-notion` target page is the `MoM` page in the
+  Product Development Space (ID: `396fbd65000f806d874ee63b7dfa58e1`).
