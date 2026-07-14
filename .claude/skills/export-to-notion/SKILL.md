@@ -31,9 +31,10 @@ running `/fireflies` first to generate one. Stop here.
 
 Read the full file content. Extract:
 
-- **Meeting title** — from the first line of the meeting header block (the bold
-  title after `**Meeting header**`, or from the filename as a fallback:
-  un-slugify the middle segment of `outputs/YYYY-MM-DD-mom-<slug>-<id>.md`).
+- **Meeting title** — compose as `YYYY-MM-DD <Meeting Name>`, where:
+  - `YYYY-MM-DD` is the meeting date (from the `**Date:**` field in the file, or from the filename prefix as a fallback).
+  - `<Meeting Name>` is the meeting name from the first `#` heading in the file (or un-slugified from the filename middle segment `<slug>` as a fallback).
+  - Example: `2026-07-14 IoT x Product x Engineering Weekly`
 - **Content body** — the full Markdown text. Do **not** include the title
   in the content body; it goes into `properties.title` only (Notion renders
   the title automatically as a large heading at the top of the page).
@@ -75,7 +76,7 @@ Then call the tool:
   "pages": [
     {
       "properties": {
-        "title": "<meeting title from Step 2>"
+        "title": "<YYYY-MM-DD Meeting Name from Step 2>"
       },
       "content": "<ToC block>\n\n<full MoM body from Step 2, Notion-flavored Markdown>"
     }
