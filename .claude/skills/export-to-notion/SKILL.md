@@ -61,7 +61,8 @@ and section headings are the most likely areas requiring conversion.
 Find the available tool whose name ends with `notion-create-pages` and call it.
 
 Before assembling the `content` string:
-- Look up the Table of Contents block syntax in the spec you read in Step 3.
+- The Table of Contents block syntax for Notion-flavored Markdown is:
+  `<table_of_contents/>`
 - Prepend that ToC block to the content body (before the first heading), so
   Notion renders a live, auto-generated Table of Contents at the top of the page.
 
