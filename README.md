@@ -1,6 +1,6 @@
 # McEasy Fireflies Agents
 
-**Version:** 1.5.0 — see [CHANGELOG.md](CHANGELOG.md)
+**Version:** 1.5.1 — see [CHANGELOG.md](CHANGELOG.md)
 
 A Claude Code agent/skill pack that fetches and summarizes Fireflies.ai
 meeting transcripts. Run `/fireflies` with a transcript ID, a partial meeting

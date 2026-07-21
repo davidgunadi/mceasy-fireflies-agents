@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.1] - 2026-07-21
+
+### Fixed
+
+- Meeting date in summaries and MoMs now always shows the correct day-of-week
+  in GMT+7 (WIB). Both the `default-summary` and `mom` agents previously
+  derived the weekday by mental arithmetic from the raw UTC timestamp, which
+  produced wrong day names (e.g. "Sunday" instead of "Monday"). Both agents
+  now run a Bash command to convert the UTC timestamp to Asia/Jakarta time
+  before formatting the date.
+
 ## [1.5.0] - 2026-07-14
 
 ### Added

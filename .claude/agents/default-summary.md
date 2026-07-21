@@ -70,6 +70,18 @@ You are given a Fireflies transcript ID. Do the following:
 
 **Meeting header** — title, date, duration, organizer, attendees.
 
+For the **date** field, the transcript metadata contains a UTC timestamp. Never
+compute the weekday label by mental arithmetic — always derive it via Bash:
+
+```bash
+epoch=$(TZ=UTC date -j -f "%Y-%m-%dT%H:%M:%S" "<UTC-datetime-from-transcript>" +"%s")
+TZ="Asia/Jakarta" date -r "$epoch" +"%A, %-d %B %Y, %H:%M WIB"
+```
+
+Replace `<UTC-datetime-from-transcript>` with the ISO datetime string from
+the transcript header (strip any trailing `.000Z`). Use the command output as
+the date string in the header, e.g. `Monday, 20 July 2026, 09:15 WIB`.
+
 **What this meeting was about** — 2–3 sentence plain-language summary of
 the purpose and context.
 
