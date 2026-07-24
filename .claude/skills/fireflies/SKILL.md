@@ -83,7 +83,7 @@ exactly as shown and stop:
 
 ```
 What type of summary do you need?
-a. Default — full write-up per topic/team. Use this if you missed the
+a. Full — full write-up per topic/team. Use this if you missed the
    meeting and want to understand everything that was actually discussed.
 b. MoM — tight recap: one line per topic, decisions, and an action-item
    table. Use this if you were there (or just need the outcomes) and
@@ -98,7 +98,7 @@ Stop here and wait for the user's reply. Do not proceed further in this turn.
 
 Based on the user's answer:
 
-- **a** (or "default", "all details", or equivalent) → delegate to the
+- **a** (or "full", "default", "all details", or equivalent) → delegate to the
   `default-summary` subagent
 - **b** (or "MoM", "mom", "minutes", or equivalent) → delegate to the
   `mom` subagent
