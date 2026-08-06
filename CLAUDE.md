@@ -22,7 +22,7 @@ Skills live in `.claude/skills/`. Each skill is a folder with a `SKILL.md` file 
 | Command | What it triggers |
 |---|---|
 | `/fireflies` | With a transcript ID: summarizes it directly. With a partial meeting name: searches the last 2 weeks for matches and asks you to pick. With no argument: lists your 5 most recent transcripts (paginate with "more") and asks you to pick. |
-| `/export-to-notion` | Exports the most recently generated MoM to Notion as a sub-page under the McEasy MoM page. Pass a path to a specific `outputs/*.md` file to target a different one. |
+| `/export-to-notion` | Exports the most recently generated summary (Full or MoM) to Notion as a sub-page under the McEasy MoM page. Pass a path to a specific `outputs/*.md` file to target a different one. |
 
 Type the command in Claude Code to start.
 

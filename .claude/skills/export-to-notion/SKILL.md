@@ -1,33 +1,33 @@
 ---
 name: export-to-notion
-description: Export the most recently generated MoM to Notion as a sub-page under the McEasy MoM page. Invoke after /fireflies produces a MoM. Pass a path to a specific outputs/*.md file to export that one instead.
+description: Export the most recently generated meeting summary (Full or MoM) to Notion as a sub-page under the McEasy MoM page. Invoke after /fireflies produces a summary. Pass a path to a specific outputs/*.md file to export that one instead.
 ---
 
-# Export MoM to Notion
+# Export Summary to Notion
 
-Export a MoM (Minutes of Meeting) to Notion as a sub-page under the McEasy MoM page.
+Export a meeting summary (Full write-up or MoM) to Notion as a sub-page under the McEasy MoM page.
 
 **Target Notion parent page ID:** `396fbd65000f806d874ee63b7dfa58e1`
 (Notion path: Product Development Space → MoM)
 
 ---
 
-## Step 1 — Locate the MoM file
+## Step 1 — Locate the summary file
 
 If `$ARGUMENTS` is provided and the path exists → use it as the source file.
 
-Otherwise, find the most recently modified MoM file in `outputs/`:
+Otherwise, find the most recently modified summary file in `outputs/`:
 
 ```bash
-ls -t outputs/*-mom-*.md 2>/dev/null | head -1
+ls -t outputs/*.md 2>/dev/null | head -1
 ```
 
-If no file is found, tell the user no MoM file was found in `outputs/` and suggest
+If no file is found, tell the user no summary file was found in `outputs/` and suggest
 running `/fireflies` first to generate one. Stop here.
 
 ---
 
-## Step 2 — Read and parse the MoM
+## Step 2 — Read and parse the summary
 
 Read the full file content. Extract:
 
@@ -79,7 +79,7 @@ Then call the tool:
       "properties": {
         "title": "<YYYY-MM-DD Meeting Name from Step 2>"
       },
-      "content": "<ToC block>\n\n<full MoM body from Step 2, Notion-flavored Markdown>"
+      "content": "<ToC block>\n\n<full summary body from Step 2, Notion-flavored Markdown>"
     }
   ]
 }
