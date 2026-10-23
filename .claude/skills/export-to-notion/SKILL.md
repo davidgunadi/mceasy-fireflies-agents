@@ -62,7 +62,7 @@ Find the available tool whose name ends with `notion-create-pages` and call it.
 
 Before assembling the `content` string:
 - The Table of Contents block syntax for Notion-flavored Markdown is:
-  `<table_of_contents/>`
+  `<table-of-contents />`
 - Prepend that ToC block to the content body (before the first heading), so
   Notion renders a live, auto-generated Table of Contents at the top of the page.
 
